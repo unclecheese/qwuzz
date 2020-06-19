@@ -36,6 +36,7 @@ class QuestionPrototype {
         this.isCorrect = model.isCorrect.bind(this);
         this.appliesTo = model.appliesTo.bind(this);
         this.init = model.init.bind(this);
+        this._id = model._id;
     }
 
 

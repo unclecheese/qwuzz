@@ -31,7 +31,7 @@ class Qwuzz {
 	generateQuestion(rawQuestionPrototype = null, answer = null) {
         const [questionPrototype, chosenAnswer] = this.getQuestionAndAnswer(rawQuestionPrototype, answer);
 		const peers = this.data.filter(record => {
-			return questionPrototype.appliesTo(record) && record._id !== answer._id;
+			return questionPrototype.appliesTo(record) && record._id !== chosenAnswer._id;
         });
         
         questionPrototype
@@ -97,7 +97,6 @@ class Qwuzz {
             questionPrototype = randFromArray(elligibleQuestions);
             
             const elligibleAnswers = this.data.filter(record => {
-                console.log(record, questionPrototype.appliesTo(record));
                 return questionPrototype.appliesTo(record);
             });
             

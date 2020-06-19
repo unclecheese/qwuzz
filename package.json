@@ -1,6 +1,6 @@
 {
   "name": "qwuzz",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Javascript library for generating quizzes from datasets",
   "main": "index.js",
   "repository": "git@github.com:unclecheese/qwuzz.git",
