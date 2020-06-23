@@ -30,7 +30,7 @@ class Qwuzz {
      */
 	generateQuestion(rawQuestionPrototype = null, answer = null) {
         const [questionPrototype, chosenAnswer] = this.getQuestionAndAnswer(rawQuestionPrototype, answer);
-		const peers = this.data.filter(record => {
+			const peers = this.data.filter(record => {
 			return questionPrototype.appliesTo(record) && record._id !== chosenAnswer._id;
         });
         
@@ -39,10 +39,9 @@ class Qwuzz {
             .setPeers(peers)
             .init();
             
-		const generatedQuestion = questionPrototype.createQuestion();
+		const generatedQuestion = questionPrototype.createQuestion(chosenAnswer);
         let q = {
 			question: null,
-			data: {},
         };
         
 		if (typeof generatedQuestion === 'string') {
@@ -58,13 +57,13 @@ class Qwuzz {
 
 		const choices = questionPrototype.createChoices();
 		const answerIndex = choices.findIndex((_, i) => (
-			questionPrototype.isCorrect(choices, i)
+			questionPrototype.isCorrect(choices, i, chosenAnswer)
         ));
-        
 		return {
             question: q.question,
             choices,
             answer: answerIndex,
+            _id: questionPrototype._id,
             ...q.data
         };
     }

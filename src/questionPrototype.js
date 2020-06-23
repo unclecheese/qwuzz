@@ -95,7 +95,7 @@ class QuestionPrototype {
      * @return {array}
      */
     distinctColumnSelect(field, count) {
-        const shuffled = this.shuffle(this.peers);
+        const shuffled = this.shuffle(this.peers.filter(p => p[field]));
         const set = new Set();
         shuffled.some(data => {
             if (data[field]) {
